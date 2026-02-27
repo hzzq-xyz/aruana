@@ -1,0 +1,213 @@
+/* CSS Customizado - Sistema Compacto */
+
+/* ========== TABELAS ========== */
+
+/* Reduzir padding das células */
+.fi-ta-cell {
+    padding-top: 0.375rem !important;
+    padding-bottom: 0.375rem !important;
+}
+
+/* Headers da tabela menores */
+.fi-ta-header-cell {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    font-size: 0.875rem !important;
+}
+
+/* Linhas mais baixas */
+.fi-ta-row {
+    min-height: 2.25rem !important;
+}
+
+/* Texto das células menor */
+.fi-ta-text {
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+}
+
+/* ========== BADGES ========== */
+
+/* Badges menores */
+.fi-badge {
+    padding: 0.125rem 0.5rem !important;
+    font-size: 0.75rem !important;
+    line-height: 1rem !important;
+}
+
+/* ========== FORMS ========== */
+
+/* Espaçamento entre campos reduzido */
+.fi-fo-field-wrp {
+    margin-bottom: 0.75rem !important;
+}
+
+/* Labels menores */
+.fi-fo-field-wrp-label {
+    font-size: 0.875rem !important;
+    margin-bottom: 0.25rem !important;
+}
+
+/* Inputs mais baixos */
+.fi-input,
+.fi-select,
+.fi-textarea {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    font-size: 0.875rem !important;
+}
+
+/* ========== BOTÕES ========== */
+
+/* Botões mais compactos */
+.fi-btn {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    font-size: 0.875rem !important;
+}
+
+/* ========== CARDS/SECTIONS ========== */
+
+/* Sections menores */
+.fi-section {
+    padding: 1rem !important;
+}
+
+/* Headers de section */
+.fi-section-header {
+    padding: 0.75rem !important;
+}
+
+/* ========== PAGINAÇÃO ========== */
+
+/* Paginação menor */
+.fi-pagination {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+
+/* ========== FILTROS ========== */
+
+/* Área de filtros compacta */
+.fi-ta-filters {
+    padding: 0.75rem !important;
+}
+
+/* ========== GERAL ========== */
+
+/* Reduzir espaçamento geral */
+.fi-main {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+
+/* Container do conteúdo */
+.fi-page {
+    padding: 1rem !important;
+}/* CSS Customizado - Sistema Compacto */
+
+/* ========== TABELAS ========== */
+
+/* Reduzir padding das células */
+.fi-ta-cell {
+    padding-top: 0.375rem !important;
+    padding-bottom: 0.375rem !important;
+}
+
+/* Headers da tabela menores */
+.fi-ta-header-cell {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    font-size: 0.875rem !important;
+}
+
+/* Linhas mais baixas */
+.fi-ta-row {
+    min-height: 2.25rem !important;
+}
+
+/* Texto das células menor */
+.fi-ta-text {
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+}
+
+/* ========== BADGES ========== */
+
+/* Badges menores */
+.fi-badge {
+    padding: 0.125rem 0.5rem !important;
+    font-size: 0.75rem !important;
+    line-height: 1rem !important;
+}
+
+/* ========== FORMS ========== */
+
+/* Espaçamento entre campos reduzido */
+.fi-fo-field-wrp {
+    margin-bottom: 0.75rem !important;
+}
+
+/* Labels menores */
+.fi-fo-field-wrp-label {
+    font-size: 0.875rem !important;
+    margin-bottom: 0.25rem !important;
+}
+
+/* Inputs mais baixos */
+.fi-input,
+.fi-select,
+.fi-textarea {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    font-size: 0.875rem !important;
+}
+
+/* ========== BOTÕES ========== */
+
+/* Botões mais compactos */
+.fi-btn {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    font-size: 0.875rem !important;
+}
+
+/* ========== CARDS/SECTIONS ========== */
+
+/* Sections menores */
+.fi-section {
+    padding: 1rem !important;
+}
+
+/* Headers de section */
+.fi-section-header {
+    padding: 0.75rem !important;
+}
+
+/* ========== PAGINAÇÃO ========== */
+
+/* Paginação menor */
+.fi-pagination {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+
+/* ========== FILTROS ========== */
+
+/* Área de filtros compacta */
+.fi-ta-filters {
+    padding: 0.75rem !important;
+}
+
+/* ========== GERAL ========== */
+
+/* Reduzir espaçamento geral */
+.fi-main {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+
+/* Container do conteúdo */
+.fi-page {
+    padding: 1rem !important;
+}
