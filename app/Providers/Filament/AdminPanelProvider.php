@@ -20,6 +20,9 @@ use Filament\Support\Assets\Css;
 
 class AdminPanelProvider extends PanelProvider
 {
+    
+    
+    
     public function boot(): void
     {
         // CSS Customizado para tabelas compactas
@@ -32,6 +35,7 @@ class AdminPanelProvider extends PanelProvider
     {
         return $panel
             ->default()
+            ->brandName('Aruana') // <--- ADICIONE ESTA LINHA AQUI
             ->id('admin')
             ->path('admin')
             ->login()

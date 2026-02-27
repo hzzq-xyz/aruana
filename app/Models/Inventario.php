@@ -4,14 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany; // Adicionei esta linha para evitar erros
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 class Inventario extends Model
 {
-    use HasFactory;
-
+    use HasFactory, LogsActivity;
+    
     protected $guarded = [];
-
+    
     protected $casts = [
         'iluminado' => 'boolean',
         'impactos' => 'integer',
@@ -20,8 +22,21 @@ class Inventario extends Model
         'tempo_maximo' => 'integer',
         'qtd_slots' => 'integer',
     ];
-
-    // --- AQUI ESTÁ A PARTE NOVA ---
+    
+    /**
+     * Configuração do Activity Log
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logAll()  // Loga TODOS os campos (já que usa $guarded = [])
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs()
+            ->dontLogIfAttributesChangedOnly(['updated_at'])  // Ignora mudanças só do updated_at
+            ->setDescriptionForEvent(fn(string $eventName) => "Inventário {$eventName}");
+    }
+    
+    // --- RELACIONAMENTOS ---
     public function validacoes(): HasMany
     {
         return $this->hasMany(Validacao::class);

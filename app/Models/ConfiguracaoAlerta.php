@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 class ConfiguracaoAlerta extends Model
 {
+    use LogsActivity;
+    
     // Define explicitamente o nome da tabela no banco de dados
     protected $table = 'configuracao_alertas';
     
@@ -24,6 +28,26 @@ class ConfiguracaoAlerta extends Model
     protected $casts = [
         'ativar_alerta_admin' => 'boolean',
     ];
+    
+    /**
+     * Configuração do Activity Log
+     */
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnly([
+                'assunto_aprovacao',
+                'mensagem_aprovacao',
+                'assunto_reprovacao',
+                'mensagem_reprovacao',
+                'ativar_alerta_admin',
+                'email_recebimento_alerta',
+                'assunto_alerta_admin',
+            ])
+            ->logOnlyDirty()
+            ->dontSubmitEmptyLogs()
+            ->setDescriptionForEvent(fn(string $eventName) => "Configuração de Alertas {$eventName}");
+    }
     
     /**
      * Retorna a configuração ativa. 
