@@ -15,7 +15,7 @@ use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
-use Filament\Pages; // Necessário para o Dashboard padrão
+use Filament\Pages; 
 
 class ClientePanelProvider extends PanelProvider
 {
@@ -23,25 +23,24 @@ class ClientePanelProvider extends PanelProvider
     {
         return $panel
             ->id('cliente')
-            ->path('cliente') // Acesso via nela.opecs.xyz/cliente
+            ->path('cliente') 
             ->login()
             ->colors([
-                'primary' => Color::Blue, // Cor distinta para identificar o painel do cliente
+                'primary' => Color::Blue, 
             ])
-            // --- TOQUES PROFISSIONAIS (PADRÃO FILAMENT 5) ---
             ->font('Inter') 
             ->favicon(asset('images/favicon.png'))
             ->sidebarCollapsibleOnDesktop()
             ->maxContentWidth('full')
-            // ------------------------------------------------
             
-            // O Filament precisa que estas pastas existam fisicamente no servidor
             ->discoverResources(in: app_path('Filament/Cliente/Resources'), for: 'App\\Filament\\Cliente\\Resources')
             ->discoverPages(in: app_path('Filament/Cliente/Pages'), for: 'App\\Filament\\Cliente\\Pages')
             
             ->pages([
-                Pages\Dashboard::class, // Adiciona um Dashboard inicial para evitar erro 404 ao logar
+                Pages\Dashboard::class,
             ])
+          
+
             ->discoverWidgets(in: app_path('Filament/Cliente/Widgets'), for: 'App\\Filament\\Cliente\\Widgets')
             ->middleware([
                 EncryptCookies::class,

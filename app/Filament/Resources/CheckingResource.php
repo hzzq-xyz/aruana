@@ -133,9 +133,17 @@ class CheckingResource extends Resource
                     ->limit(3),
             ])
             ->actions([
-                // BOTÃO DE LINK PÚBLICO
+                // NOVO BOTÃO: Checking Online Premium (Abre em nova aba)
+                Action::make('checking_online_premium')
+                    ->label('Apresentação (Online)')
+                    ->icon('heroicon-o-globe-alt')
+                    ->color('success')
+                    ->url(fn ($record) => route('checking.online', $record->id))
+                    ->openUrlInNewTab(),
+
+                // BOTÃO DE LINK PÚBLICO ANTIGO (Mantido caso queira comparar ou usar internamente)
                 Action::make('view_public')
-                    ->label('Link Público')
+                    ->label('Link Público (Simples)')
                     ->icon('heroicon-o-link')
                     ->color('info')
                     ->url(fn ($record) => route('checking.publico', $record->id))

@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Validacao; // Importações sempre no topo!
-use App\Http\Controllers\PreviewController; // <-- NOVO: Nosso controller de preview
+use App\Models\CheckingFoto; // <-- NOVO: Importação do Model de Checking
+use App\Http\Controllers\PreviewController; 
 
 /*
 |--------------------------------------------------------------------------
@@ -39,4 +40,13 @@ Route::get('/preview/{id}', [PreviewController::class, 'show'])
     ->name('preview.show')
     ->middleware('auth');
     
-    Route::get('/view-checking/{id}', [App\Http\Controllers\CheckingController::class, 'publicShow'])->name('checking.publico');
+// Rota Antiga/Existente de Checking
+Route::get('/view-checking/{id}', [App\Http\Controllers\CheckingController::class, 'publicShow'])->name('checking.publico');
+
+// --- NOVA ROTA: Relatório Fotográfico Online (Premium) ---
+Route::get('/relatorio/checking/{checkingFoto}', function (CheckingFoto $checkingFoto) {
+    // Carrega o checking e já traz as informações do inventário (ponto) junto
+    $checkingFoto->load('inventario');
+    
+    return view('relatorios.checking-online', compact('checkingFoto'));
+})->name('checking.online');
