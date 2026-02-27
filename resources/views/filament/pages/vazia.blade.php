@@ -1,38 +1,38 @@
 <x-filament-panels::page>
-    <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-sm ring-1 ring-gray-950/5 text-center">
-        <x-heroicon-o-server-stack style="width: 64px; height: 64px;" class="mx-auto text-primary-500 mb-4" />
-        <h2 class="text-2xl font-bold text-gray-700 dark:text-gray-200">Backup em Nuvem - Aruana</h2>
-        <p class="text-gray-500 dark:text-gray-400 mt-2 max-w-lg mx-auto">
-            Clique no botão <strong>"Fazer Backup para o GitHub"</strong> no canto superior direito para salvar o estado atual do sistema de forma segura.
-        </p>
-    </div>
+    <x-filament::section>
+        <div style="text-align: center; padding: 20px;">
+            <x-heroicon-o-server-stack style="width: 64px; height: 64px; margin: 0 auto; color: #6b7280;" />
+            <h2 style="font-size: 1.5rem; font-weight: bold; margin-top: 15px; color: #374151;">Backup em Nuvem - Aruana</h2>
+            <p style="color: #6b7280; margin-top: 10px; line-height: 1.5;">
+                Clique no botão <strong>"Fazer Backup para o GitHub"</strong> no canto superior direito para salvar o estado atual do sistema de forma segura.
+            </p>
+        </div>
+    </x-filament::section>
 
-    <div class="mt-6">
-        <h3 class="text-lg font-bold mb-4 text-gray-800 dark:text-gray-200">Últimas Sincronizações</h3>
-        
-        <div class="bg-white dark:bg-gray-900 rounded-xl shadow-sm ring-1 ring-gray-950/5 overflow-hidden">
-            @if(count($historico) > 0)
-                <table class="w-full text-left text-sm">
-                    <thead class="bg-gray-50 dark:bg-gray-800/50 border-b border-gray-200 dark:border-gray-800">
-                        <tr>
-                            <th class="px-6 py-4 font-semibold text-gray-600 dark:text-gray-300">Data e Hora</th>
-                            <th class="px-6 py-4 font-semibold text-gray-600 dark:text-gray-300">Descrição do Backup</th>
-                            <th class="px-6 py-4 font-semibold text-gray-600 dark:text-gray-300 w-32 text-center">Status</th>
+    <x-filament::section heading="Últimas Sincronizações">
+        @if(count($historico) > 0)
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; text-align: left; border-collapse: collapse; font-size: 0.875rem;">
+                    <thead>
+                        <tr style="border-bottom: 1px solid #e5e7eb;">
+                            <th style="padding: 12px 16px; font-weight: 600; color: #374151;">Data e Hora</th>
+                            <th style="padding: 12px 16px; font-weight: 600; color: #374151;">Descrição do Backup</th>
+                            <th style="padding: 12px 16px; font-weight: 600; text-align: center; color: #374151;">Status</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-200 dark:divide-gray-800">
+                    <tbody>
                         @foreach($historico as $item)
-                            <tr class="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition">
-                                <td class="px-6 py-4 text-gray-600 dark:text-gray-400 font-medium whitespace-nowrap">
-                                    <x-heroicon-o-calendar class="w-4 h-4 inline-block mr-1 opacity-50"/>
+                            <tr style="border-bottom: 1px solid #f3f4f6;">
+                                <td style="padding: 12px 16px; color: #4b5563; white-space: nowrap;">
+                                    <x-heroicon-o-calendar style="width: 16px; height: 16px; display: inline-block; vertical-align: text-bottom; margin-right: 6px; color: #9ca3af;" />
                                     {{ $item['date'] }}
                                 </td>
-                                <td class="px-6 py-4 text-gray-600 dark:text-gray-400">
+                                <td style="padding: 12px 16px; color: #4b5563;">
                                     Snapshot automático ({{ $item['message'] }})
                                 </td>
-                                <td class="px-6 py-4 text-center">
-                                    <span class="inline-flex items-center gap-1.5 py-1 px-3 rounded-md text-xs font-medium bg-success-50 text-success-600 dark:bg-success-400/10 dark:text-success-400 ring-1 ring-inset ring-success-600/20">
-                                        <x-heroicon-s-check-circle class="w-4 h-4" />
+                                <td style="padding: 12px 16px; text-align: center;">
+                                    <span style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 9999px; font-size: 0.75rem; font-weight: 600; background-color: #d1fae5; color: #065f46;">
+                                        <x-heroicon-s-check-circle style="width: 16px; height: 16px;" />
                                         Sucesso
                                     </span>
                                 </td>
@@ -40,11 +40,11 @@
                         @endforeach
                     </tbody>
                 </table>
-            @else
-                <div class="p-8 text-center text-gray-500">
-                    Nenhum backup registrado pelo sistema ainda.
-                </div>
-            @endif
-        </div>
-    </div>
+            </div>
+        @else
+            <div style="text-align: center; padding: 30px; color: #6b7280; font-style: italic;">
+                Nenhum backup registrado pelo sistema ainda.
+            </div>
+        @endif
+    </x-filament::section>
 </x-filament-panels::page>
