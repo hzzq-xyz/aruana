@@ -99,11 +99,17 @@ class GerenciarMidiaResource extends Resource
                         'reprovado' => 'Reprovado',
                     ]),
 
+                // CORREÇÃO: Impedimos que canais (inventario) com código nulo ou vazio sejam listados no filtro
                 Tables\Filters\SelectFilter::make('inventario_id')
                     ->label('Canal')
-                    ->relationship('inventario', 'codigo'),
+                    ->relationship(
+                        name: 'inventario', 
+                        titleAttribute: 'codigo',
+                        modifyQueryUsing: fn ($query) => $query->whereNotNull('codigo')->where('codigo', '!=', '')
+                    ),
             ])
             ->actions([
+                // CORREÇÃO: Usando a Action unificada da V5 (sem Tables\Actions\)
                 Action::make('preview')
                     ->label('Ver')
                     ->icon('heroicon-o-play')
@@ -129,7 +135,6 @@ class GerenciarMidiaResource extends Resource
 
                         if ($record->user && $record->user->email) {
                             try {
-                                $cor = $configVisual->cor_primaria ?? '#10b981';
                                 $logoUrl = $configVisual->logo ? asset('storage/' . $configVisual->logo) : null;
 
                                 $html = "
