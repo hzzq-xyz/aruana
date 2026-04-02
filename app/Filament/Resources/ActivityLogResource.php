@@ -8,6 +8,9 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Actions\Action; // Importação unificada V5 para Ação Individual
+use Filament\Actions\BulkAction; // Importação unificada V5 para Ação em Massa
+use Illuminate\Database\Eloquent\Collection;
 use UnitEnum;
 use BackedEnum;
 
@@ -116,7 +119,6 @@ class ActivityLogResource extends Resource
                             
                             $count = count($changes);
                             
-                            // Mostrar apenas os primeiros 2
                             if ($count <= 2) {
                                 return implode(' | ', $changes);
                             } else {
@@ -164,6 +166,25 @@ class ActivityLogResource extends Resource
                         'updated' => 'Atualizado',
                         'deleted' => 'Deletado',
                     ]),
+            ])
+            ->actions([
+                // AÇÃO INDIVIDUAL (usando a classe unificada)
+                Action::make('deletar')
+                    ->label('Deletar')
+                    ->icon('heroicon-o-trash')
+                    ->color('danger')
+                    ->requiresConfirmation()
+                    ->action(fn (Activity $record) => $record->delete()),
+            ])
+            ->bulkActions([
+                // AÇÃO EM MASSA (usando a nova classe unificada)
+                BulkAction::make('deletar_selecionados')
+                    ->label('Deletar Selecionados')
+                    ->icon('heroicon-o-trash')
+                    ->color('danger')
+                    ->requiresConfirmation()
+                    ->action(fn (Collection $records) => $records->each->delete())
+                    ->deselectRecordsAfterCompletion(),
             ]);
     }
     
