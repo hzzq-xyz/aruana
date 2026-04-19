@@ -37,6 +37,13 @@ class Campaign extends Model
         // Certifica-te de que o nome do teu modelo de VTs é ExternalMedia
         return $this->belongsToMany(ExternalMedia::class, 'campaign_external_media');
     }
+    
+    // app/Models/Campaign.php
+
+public function playLogs(): \Illuminate\Database\Eloquent\Relations\HasMany
+{
+    return $this->hasMany(PlayLog::class);
+}
 
     // Em que horários?
     public function schedules(): HasMany

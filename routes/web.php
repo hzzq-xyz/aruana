@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Validacao; // Importações sempre no topo!
 use App\Models\CheckingFoto; // <-- NOVO: Importação do Model de Checking
 use App\Http\Controllers\PreviewController; 
+use App\Http\Controllers\PlayerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,3 +51,12 @@ Route::get('/relatorio/checking/{checkingFoto}', function (CheckingFoto $checkin
     
     return view('relatorios.checking-online', compact('checkingFoto'));
 })->name('checking.online');
+
+
+// O link que o mini-PC vai abrir: nela.opecs.xyz/play/CODIGO-DO-PAINEL
+Route::get('/play/{codigo}', [PlayerController::class, 'show']);
+
+// O link interno que o player usa para baixar a lista de vídeos
+Route::get('/api/playlist/{codigo}', [PlayerController::class, 'getPlaylist']);
+
+Route::post('/api/log-play', [PlayerController::class, 'logPlay']);

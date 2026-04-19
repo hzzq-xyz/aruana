@@ -23,7 +23,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Components\DatePicker;
-use Filament\Forms\Components\FileUpload; // 👈 IMPORTAÇÃO NOVA PARA O UPLOAD DIRETO
+use Filament\Forms\Components\FileUpload; 
 
 // AÇÕES UNIFICADAS
 use Filament\Actions\Action;
@@ -103,7 +103,6 @@ class CampaignResource extends Resource
                                     ->preload()
                                     ->searchable()
                                     ->required()
-                                    // 👇 A MÁGICA DO UPLOAD DIRETO COMEÇA AQUI 👇
                                     ->createOptionForm([
                                         FileUpload::make('file_path')
                                             ->label('Arquivo do VT (MP4, JPG, etc)')
@@ -113,12 +112,10 @@ class CampaignResource extends Resource
                                     ->createOptionUsing(function (array $data, callable $get) {
                                         $userId = $get('user_id');
                                         
-                                        // Bloqueia o upload se o usuário esquecer de selecionar o cliente primeiro
                                         if (! $userId) {
                                             throw new \Exception('Selecione um Cliente primeiro antes de fazer o upload do VT.');
                                         }
                                         
-                                        // Salva na tabela "external_media" do cliente e já marca como "aprovado"
                                         $novaMidia = \App\Models\ExternalMedia::create([
                                             'user_id' => $userId,
                                             'file_path' => $data['file_path'],
@@ -137,7 +134,25 @@ class CampaignResource extends Resource
                                     ->label('Grade de Horários')
                                     ->columns(3)
                                     ->defaultItems(1)
-                                    ->addActionLabel('Adicionar Bloco de Horário')
+                                    ->addActionLabel('Adicionar Bloco Manual')
+                                    // 👇 BOTÃO DE ATALHO ADICIONADO AQUI 👇
+                                    ->hintAction(
+                                        Action::make('fillFullWeek')
+                                            ->label('Preencher 24/7 (Seg a Dom)')
+                                            ->icon('heroicon-m-calendar-days')
+                                            ->color('info')
+                                            ->action(function (Repeater $component) {
+                                                $component->state([
+                                                    ['dia_semana' => '1', 'hora_inicio' => '00:00', 'hora_fim' => '23:59'],
+                                                    ['dia_semana' => '2', 'hora_inicio' => '00:00', 'hora_fim' => '23:59'],
+                                                    ['dia_semana' => '3', 'hora_inicio' => '00:00', 'hora_fim' => '23:59'],
+                                                    ['dia_semana' => '4', 'hora_inicio' => '00:00', 'hora_fim' => '23:59'],
+                                                    ['dia_semana' => '5', 'hora_inicio' => '00:00', 'hora_fim' => '23:59'],
+                                                    ['dia_semana' => '6', 'hora_inicio' => '00:00', 'hora_fim' => '23:59'],
+                                                    ['dia_semana' => '0', 'hora_inicio' => '00:00', 'hora_fim' => '23:59'],
+                                                ]);
+                                            })
+                                    )
                                     ->schema([
                                         Select::make('dia_semana')
                                             ->label('Dia da Semana')
